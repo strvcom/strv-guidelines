@@ -1,14 +1,11 @@
-STRV Git Guidelines
-===================
+# STRV Git Guidelines
 
-GitHub
-------
+## GitHub
 
 - We use GitHub for hosting Git repositories
 - We require two-factor authentication
 
-Repositories
-------------
+## Repositories
 
 - Use `lowercase`, `kebab-case` for repository names
 - Repository name should consist of three parts: `<project>-<platform>-<module>`, the `<module>` part is optional and the `<platform>` part is one of these: *android*, *ios*, *backend*, *frontend*, *rn*, *unity*
@@ -17,11 +14,10 @@ Repositories
 - If project has multiple versions, use *v1*, *v2* suffixes, e.g. `futupilot-backend-api-v1`, `futupilot-backend-api-v2`
 - If API, web or RN are mixed in a single repository, use `js-monorepo` as a platform identifier, e.g. `ordr-js-monorepo`
 - The same rules above apply to public repositories
-- Each project must have proper *.gitignore*, ignoring temporary files and binaries 
+- Each project must have proper *.gitignore*, ignoring temporary files and binaries
 - Each project must have a *README.md* file with instructions and other important notes about how to build it and run it
 
-Teams
------
+## Teams
 
 - Each project should have a team at GitHub
 - Each repository should be assigned to a team
@@ -29,8 +25,7 @@ Teams
 - Use `PascalCase` for team names, e.g. `RichUncles`
 - If you need to add a suffix, separate it with the dash symbol, e.g. `RichUncles-Admin`
 
-Branches
---------
+## Branches
 
 - Each project should have *master* and *dev* branches, use *dev* rather than *develop*
 - The master branch should be kept stable at all times, it reflects code currently running on production
@@ -42,25 +37,38 @@ Branches
 - Always remove inactive branches
 - We strongly recommend [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/) for bigger teams, optional for smaller teams
 
-Pull Requests
--------------
+## Pull Requests
 
 - Developers in a team should send a pull request before merging a branch and the pull request should be reviewed by another developer in the team
 
-Committing and Pushing
-----------------------
+## Committing and Pushing
 
 - Each commit should address 1 logical change
-- Never commit temporary files, binaries, etc.
-- Never commit passwords or other sensitive data to a public repository
-- Never use `git push --force`
-- Don't commit code with trailing whitespaces
+- Never commit temporary files, binaries or other compiled sources, etc.
+- Never commit passwords or other sensitive data to a public repository. When you make a private repository public, always consider recreating all secrets which might have ever been part of the git history.
+- Use `git push --force` only on feature branches and when you are sure nobody from your team is working on that branch or has another branch based off of that branch
+- Don't commit code with trailing whitespace
 - Don't commit code without a new line at the end of the file ([POSIX standard](https://stackoverflow.com/questions/729692/why-should-text-files-end-with-a-newline))
 - Make sure all tests and linter pass before pushing any code
 - Follow the "leave the campground cleaner than you found it" rule for any code you commit
 
-Commit Messages
----------------
+## Commit Messages
+
+You have two options to choose from:
+
+### Conventional Commits
+
+Simply follow the [`conventional-commits`](https://www.conventionalcommits.org) strategy. Following this convention allows other tools to extract meaningful data from your commits and in turn offer you
+
+- automatic semantic release versioning
+- changelog generation
+- clear visibility into breaking changes
+
+Conventional commits can be optionally enforced (linted) using [`commitlint`](https://commitlint.js.org) and [`@strv/commitlint-config`](https://github.com/strvcom/code-quality-tools/tree/master/packages/commitlint-config).
+
+### General commit conventions
+
+These conventions have been around for quite some time and provide a great baseline for your commit messages.
 
 - Message should describe the changes well in the code
 - Follow [this commit message convention](https://chris.beams.io/posts/git-commit/)
@@ -70,27 +78,24 @@ Commit Messages
 - Do not end the subject line with a period
 - Use present tense, imperative mood in the subject line, e.g. `Add online indicator`, not ~~`Adds online indicator`~~, ~~`Added online indicator`~~
 - Wrap the body at 72 characters
-- Use the body to explain what and why vs. how
+- Use the body to explain what and why vs. how (ie. describe why this feature exists in terms of business value rather than how you implemented it, unless the implementation itself is complex enough to warrant explaining to future developers)
 - If you use an issue tracker, put references to them at the end of the message
-- For example: "Fix NullPointerException in ProductListAdapter" is a much better message than "fixed bug", the latter is wrong, because it is in past tense, in lowercase and not so descriptive
+- For example: _"Fix NullPointerException in ProductListAdapter"_ is a much better message than _"fixed bug"_, the latter is wrong, because it is in past tense, in lowercase and not so descriptive
 
-Tags
-----
+## Tags
 
 - Follow [Semantic Versioning](https://semver.org/) for version tags, e.g. `1.4.2`
 - Don't use "v" prefix in version tags, e.g. ~~`v1.4.2`~~
 - Each release commit must be tagged with a version name
 
-Backup and Archiving
---------------------
+## Backup and Archiving
 
 - Repositories from third party organizations should be backed up when project is finishing
 - Repositories with last change older than 3 years should be backed up and archived
 - Platform leaders are responsible for archiving repositories
 - Use `git clone` command for the backup, e.g. `git clone git@github.com:strvcom/surge-android.git surge-android`
 
-Pull Request Template
----------------------
+## Pull Request Template
 
 ```markdown
 ## Changes
