@@ -1,5 +1,18 @@
 # STRV Git Guidelines
 
+This document is focused on the following topics:
+
+- [GitHub](#github)
+- [Repositories](#repositories)
+- [Teams](#teams)
+- [Branches](#branches)
+- [Committing and Pushing](#committing-and-pushing)
+- [Commit Messages](#commit-messages)
+- [Pull Requests](#pull-requests)
+- [Code Reviews](#code-reviews)
+- [Tags](#tags)
+- [Backup and Archiving](#backup-and-archiving)
+
 ## GitHub
 
 - We use GitHub for hosting Git repositories
@@ -8,14 +21,14 @@
 ## Repositories
 
 - Use `lowercase`, `kebab-case` for repository names
-- Repository name should consist of three parts: `<project>-<platform>-<module>`, the `<module>` part is optional and the `<platform>` part is one of these: *android*, *ios*, *backend*, *frontend*, *rn*, *unity*
-- Examples of repository names: `surge-android`, `surge-ios`, `surge-backend-api`, `surge-frontend-admin`, `surge-rn`
+- Repository name should consist of three parts: `<project>-<platform>-<module>`, the `<module>` part is optional and the `<platform>` part is one of these: *android*, *ios*, *backend*, *frontend*, *rn*, *unity*, *ds*
+- Examples of repository names: `surge-android`, `surge-ios`, `surge-backend-api`, `surge-frontend-admin`, `surge-rn`, `surge-ds`
 - If project name consists of multiple words, use dashes as a separator, e.g. `rich-uncles-frontend`
 - If project has multiple versions, use *v1*, *v2* suffixes, e.g. `futupilot-backend-api-v1`, `futupilot-backend-api-v2`
 - If API, web or RN are mixed in a single repository, use `js-monorepo` as a platform identifier, e.g. `ordr-js-monorepo`
 - The same rules above apply to public repositories
 - Each project must have proper *.gitignore*, ignoring temporary files and binaries
-- Each project must have a *README.md* file with instructions and other important notes about how to build it and run it
+- Each project must have a *README.md* file with instructions and other important notes about how to build it, run it, and test it
 
 ## Teams
 
@@ -37,10 +50,6 @@
 - Always remove inactive branches
 - We strongly recommend [Git Flow](http://nvie.com/posts/a-successful-git-branching-model/) for bigger teams, optional for smaller teams
 
-## Pull Requests
-
-- Developers in a team should send a pull request before merging a branch and the pull request should be reviewed by another developer in the team
-
 ## Committing and Pushing
 
 - Each commit should address 1 logical change
@@ -55,31 +64,75 @@
 
 ## Commit Messages
 
-- You have two options to choose from:
-
-### Conventional Commits
-
 - Simply follow the [`Conventional Commits`](https://www.conventionalcommits.org) strategy
 - Following this convention allows other tools to extract meaningful data from your commits and in turn offer you:
     - Automatic semantic release versioning
     - Changelog generation
     - Clear visibility into breaking changes
 - Conventional commits can be optionally enforced (linted) using [`commitlint`](https://commitlint.js.org) and [`@strv/commitlint-config`](https://github.com/strvcom/code-quality-tools/tree/master/packages/commitlint-config)
+- On top of [`Conventional Commits`](https://www.conventionalcommits.org), it is a good practice to follow these general rules:
+  - Message should describe the changes in the code well
+  - Limit the subject line to 50 characters
+  - Do not end the subject line with a period
+  - Use present tense, imperative mood in the subject line, e.g. `feat: add online indicator`, not ~~`feat: adds online indicator`~~, ~~`feat: added online indicator`~~
+  - Wrap the body at 72 characters
+  - Use the body to explain what and why vs. how (i.e. describe why this feature exists in terms of business value rather than how you implemented it, unless the implementation itself is complex enough to warrant explaining to future developers)
+  - When merging into master, reference to pull request should be added
+  - When pushing into feature branch, no reference should be added, because pull request should contain reference to issue tracking system
+  - For example: `fix: NullPointerException in ProductListAdapter (#243)` is much better message than `fixed bug`; the latter is wrong, because it is in the past tense, in lowercase, not so descriptive, without reference to pull request and doesn't follow the [`Conventional Commits`](https://www.conventionalcommits.org) strategy
+- Further reading about writing good commit messages can be found [here](https://chris.beams.io/posts/git-commit/)
 
-### General Commit Conventions
+## Pull Requests
 
-- These conventions have been around for quite some time and provide a great baseline for your commit messages
-- Message should describe the changes well in the code
-- Follow [this commit message convention](https://chris.beams.io/posts/git-commit/)
-- Separate subject from body with a blank line
-- Limit the subject line to 50 characters
-- Capitalize the subject line
-- Do not end the subject line with a period
-- Use present tense, imperative mood in the subject line, e.g. `Add online indicator`, not ~~`Adds online indicator`~~, ~~`Added online indicator`~~
-- Wrap the body at 72 characters
-- Use the body to explain what and why vs. how (i.e. describe why this feature exists in terms of business value rather than how you implemented it, unless the implementation itself is complex enough to warrant explaining to future developers)
-- If you use an issue tracker, put references to them at the end of the message
-- For example: _"Fix NullPointerException in ProductListAdapter"_ is a much better message than _"fixed bug"_, the latter is wrong, because it is in past tense, in lowercase and not so descriptive
+- Before merging a feature branch into master, you should send a pull request and the pull request should be reviewed by another developer in the team
+- Pull requests should be small, relevant to an issue, and properly described
+- In order to provide all the necessary information to reviewer, fill in metadata on the pull request page in GitHub (Reviewers, Assignees, Projects, Linked issues), and use the following template for pull request description:
+  ```markdown
+  ## Changes
+
+  Explain the changes you made. What does this implement or fix?
+
+  ## Links
+
+  - [Issue #123](https://link.to/issue-tracking-system)
+
+  ## Tested with
+
+  - Chrome 42 (macOS 42)
+  - iPhone 42 (iOS 42)
+  - Pixel 42 (Android 42)
+
+  ## Checklist
+
+  - [ ] Lint and tests pass locally with my changes
+  - [ ] I've added tests that prove my feature works or that my fix is effective
+  - [ ] I've added necessary documentation
+  ```
+- Another tips for good pull requests can be found [here](https://blog.ploeh.dk/2015/01/15/10-tips-for-better-pull-requests/)
+
+## Code Reviews
+
+- In general, huge pull requests should be rejected
+- Code reviews should be finished until one business day maximally
+- As a reviewer, you should make sure that:
+  - The code is well-designed
+  - The developer used clear names for everything
+  - The functionality is good for the users of the code
+  - The code isn’t more complex than it needs to be
+  - The developer isn’t implementing things that don’t address the problem
+  - Code has appropriate unit tests and tests are well-designed
+  - Comments are clear and useful, and mostly explain why and what instead of how
+  - Code is appropriately documented
+  - The code conforms to our style guides
+- When writing your comments, remember that good code review is more about communication than you being an know-all, so:
+  - Be polite
+  - Explain your ideas
+  - Balance giving explicit directions with just pointing out problems and letting the developer decide
+  - Encourage developers to simplify code or add code comments instead of just explaining the complexity to you
+- As developer:
+  - Don't take reviewer's comments personally
+  - If a reviewer doesn't understand your code, it’s likely other future readers of the code won’t understand either; it means you should fix it
+- Another advices on how to review a code can be found [here](https://google.github.io/eng-practices/review/reviewer/)
 
 ## Tags
 
@@ -93,27 +146,3 @@
 - Repositories with last change older than 3 years should be backed up and archived
 - Platform leaders are responsible for archiving repositories
 - Use `git clone` command for the backup, e.g. `git clone git@github.com:strvcom/surge-android.git surge-android`
-
-## Pull Request Template
-
-```markdown
-## Changes
-
-Explain the changes you made. What does this implement or fix?
-
-## Links
-
-- [Issue #123](https://link.to/issue-tracking-system)
-
-## Tested with
-
-- Chrome 42 (macOS 42)
-- iPhone 42 (iOS 42)
-- Pixel 42 (Android 42)
-
-## Checklist
-
-- [ ] Lint and tests pass locally with my changes
-- [ ] I've added tests that prove my feature works or that my fix is effective
-- [ ] I've added necessary documentation
-```
