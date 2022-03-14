@@ -64,75 +64,76 @@ This document is focused on the following topics:
 
 ## Commit Messages
 
+- You have two options to choose from
+
+#### Conventional Commits
+
 - Simply follow the [`Conventional Commits`](https://www.conventionalcommits.org) strategy
 - Following this convention allows other tools to extract meaningful data from your commits and in turn offer you:
     - Automatic semantic release versioning
     - Changelog generation
     - Clear visibility into breaking changes
 - Conventional commits can be optionally enforced (linted) using [`commitlint`](https://commitlint.js.org) and [`@strv/commitlint-config`](https://github.com/strvcom/code-quality-tools/tree/master/packages/commitlint-config)
-- On top of [`Conventional Commits`](https://www.conventionalcommits.org), it is a good practice to follow these general rules:
-  - Message should describe the changes in the code well
-  - Limit the subject line to 50 characters
-  - Do not end the subject line with a period
-  - Use present tense, imperative mood in the subject line, e.g. `feat: add online indicator`, not ~~`feat: adds online indicator`~~, ~~`feat: added online indicator`~~
-  - Wrap the body at 72 characters
-  - Use the body to explain what and why vs. how (i.e. describe why this feature exists in terms of business value rather than how you implemented it, unless the implementation itself is complex enough to warrant explaining to future developers)
-  - When merging into master, reference to pull request should be added
-  - When pushing into feature branch, no reference should be added, because pull request should contain reference to issue tracking system
-  - For example: `fix: NullPointerException in ProductListAdapter (#243)` is much better message than `fixed bug`; the latter is wrong, because it is in the past tense, in lowercase, not so descriptive, without reference to pull request and doesn't follow the [`Conventional Commits`](https://www.conventionalcommits.org) strategy
+
+#### General Commits Conventions
+
+- Message should describe the changes in the code well
+- Limit the subject line to 50 characters
+- Do not end the subject line with a period
+- Use present tense, imperative mood in the subject line, e.g. `Add online indicator`, not ~~`Adds online indicator`~~, ~~`Added online indicator`~~
+- Wrap the body at 72 characters
+- Use the body to explain what and why vs. how (i.e. describe why this feature exists in terms of business value rather than how you implemented it, unless the implementation itself is complex enough to warrant explaining to future developers)
+- When merging into master, reference to pull request should be added
+- When pushing into feature branch, no reference should be added, because pull request should contain reference to issue tracking system
+- For example: `Fix NullPointerException in ProductListAdapter (#243)` is much better message than `fixed bug`; the latter is wrong, because it is in the past tense, in lowercase, not so descriptive, without reference to pull request
 - Further reading about writing good commit messages can be found [here](https://chris.beams.io/posts/git-commit/)
 
 ## Pull Requests
 
 - Before merging a feature branch into master, you should send a pull request and the pull request should be reviewed by another developer in the team
 - Pull requests should be small, relevant to an issue, and properly described
-- In order to provide all the necessary information to reviewer, fill in metadata on the pull request page in GitHub (Reviewers, Assignees, Projects, Linked issues), and use the following template for pull request description:
-  ```markdown
-  ## Changes
-
-  Explain the changes you made. What does this implement or fix?
-
-  ## Links
-
-  - [Issue #123](https://link.to/issue-tracking-system)
-
-  ## Tested with
-
-  - Chrome 42 (macOS 42)
-  - iPhone 42 (iOS 42)
-  - Pixel 42 (Android 42)
-
-  ## Checklist
-
-  - [ ] Lint and tests pass locally with my changes
-  - [ ] I've added tests that prove my feature works or that my fix is effective
-  - [ ] I've added necessary documentation
-  ```
+- In order to provide all the necessary information to reviewer, fill in metadata on the pull request page in GitHub (Reviewers, Assignees, Projects, Linked issues), and use a template for pull request description.
 - Another tips for good pull requests can be found [here](https://blog.ploeh.dk/2015/01/15/10-tips-for-better-pull-requests/)
+
+#### Template
+
+```markdown
+## Changes
+
+Explain the changes you made. What does this implement or fix?
+
+## Links
+
+- [Issue #123](https://link.to/issue-tracking-system)
+
+## Tested with
+
+- Chrome 42 (macOS 42)
+- iPhone 42 (iOS 42)
+- Pixel 42 (Android 42)
+
+## Checklist
+
+- [ ] Lint and tests pass locally with my changes
+- [ ] I've added tests that prove my feature works or that my fix is effective
+- [ ] I've added necessary documentation
+```
 
 ## Code Reviews
 
+- Remember that good code review is more about communication than you being an know-all
+
+#### As reviewer
+
 - In general, huge pull requests should be rejected
 - Code reviews should be finished until one business day maximally
-- As a reviewer, you should make sure that:
-  - The code is well-designed
-  - The developer used clear names for everything
-  - The functionality is good for the users of the code
-  - The code isn’t more complex than it needs to be
-  - The developer isn’t implementing things that don’t address the problem
-  - Code has appropriate unit tests and tests are well-designed
-  - Comments are clear and useful, and mostly explain why and what instead of how
-  - Code is appropriately documented
-  - The code conforms to our style guides
-- When writing your comments, remember that good code review is more about communication than you being an know-all, so:
-  - Be polite
-  - Explain your ideas
-  - Balance giving explicit directions with just pointing out problems and letting the developer decide
-  - Encourage developers to simplify code or add code comments instead of just explaining the complexity to you
-- As developer:
-  - Don't take reviewer's comments personally
-  - If a reviewer doesn't understand your code, it’s likely other future readers of the code won’t understand either; it means you should fix it
-- Another advices on how to review a code can be found [here](https://google.github.io/eng-practices/review/reviewer/)
+- Make sure that developer's code is well-designed, properly described, tested, documented and addresses the problem
+- When writing your comments, be polite, explain your ideas, and balance giving explicit directions with just pointing out problems and letting the developer decide
+
+#### As developer
+
+- Don't take reviewer's comments personally
+- If a reviewer doesn't understand your code, it’s likely other future readers of the code won’t understand either; it means you should fix it
 
 ## Tags
 
