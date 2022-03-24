@@ -66,7 +66,7 @@ This document is focused on the following topics:
 
 - You have two options to choose from
 
-#### Conventional Commits
+### Conventional Commits
 
 - Simply follow the [`Conventional Commits`](https://www.conventionalcommits.org) strategy
 - Following this convention allows other tools to extract meaningful data from your commits and in turn offer you:
@@ -75,10 +75,11 @@ This document is focused on the following topics:
     - Clear visibility into breaking changes
 - Conventional commits can be optionally enforced (linted) using [`commitlint`](https://commitlint.js.org) and [`@strv/commitlint-config`](https://github.com/strvcom/code-quality-tools/tree/master/packages/commitlint-config)
 
-#### General Commits Conventions
+### General Commits Conventions
 
 - Message should describe the changes in the code well
 - Limit the subject line to 50 characters
+- Capitalize the subject line
 - Do not end the subject line with a period
 - Use present tense, imperative mood in the subject line, e.g. `Add online indicator`, not ~~`Adds online indicator`~~, ~~`Added online indicator`~~
 - Wrap the body at 72 characters
@@ -95,7 +96,7 @@ This document is focused on the following topics:
 - In order to provide all the necessary information to reviewer, fill in metadata on the pull request page in GitHub (Reviewers, Assignees, Projects, Linked issues), and use a template for pull request description.
 - Another tips for good pull requests can be found [here](https://blog.ploeh.dk/2015/01/15/10-tips-for-better-pull-requests/)
 
-#### Template
+### Template
 
 ```markdown
 ## Changes
@@ -123,14 +124,14 @@ Explain the changes you made. What does this implement or fix?
 
 - Remember that good code review is more about communication than you being an know-all
 
-#### As reviewer
+### As reviewer
 
 - In general, huge pull requests should be rejected
 - Code reviews should be finished until one business day maximally
 - Make sure that developer's code is well-designed, properly described, tested, documented and addresses the problem
 - When writing your comments, be polite, explain your ideas, and balance giving explicit directions with just pointing out problems and letting the developer decide
 
-#### As developer
+### As developer
 
 - Don't take reviewer's comments personally
 - If a reviewer doesn't understand your code, it’s likely other future readers of the code won’t understand either; it means you should fix it
