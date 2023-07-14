@@ -4,6 +4,7 @@ This document is focused on the following topics:
 
 - [GitHub](#github)
 - [Repositories](#repositories)
+- [Naming Convention of Repositories](#naming-convention-of-repositories)
 - [Teams](#teams)
 - [Branches](#branches)
 - [Committing and Pushing](#committing-and-pushing)
@@ -20,15 +21,20 @@ This document is focused on the following topics:
 
 ## Repositories
 
-- Use `lowercase`, `kebab-case` for repository names
-- Repository name should consist of three parts: `<project>-<platform>-<module>`, the `<module>` part is optional and the `<platform>` part is one of these: *android*, *ios*, *backend*, *frontend*, *rn*, *unity*, *ds*
-- Examples of repository names: `surge-android`, `surge-ios`, `surge-backend-api`, `surge-frontend-admin`, `surge-rn`, `surge-ds`
-- If project name consists of multiple words, use dashes as a separator, e.g. `rich-uncles-frontend`
-- If project has multiple versions, use *v1*, *v2* suffixes, e.g. `futupilot-backend-api-v1`, `futupilot-backend-api-v2`
-- If API, web or RN are mixed in a single repository, use `js-monorepo` as a platform identifier, e.g. `ordr-js-monorepo`
-- The same rules above apply to public repositories
 - Each project must have proper *.gitignore*, ignoring temporary files and binaries
 - Each project must have a *README.md* file with instructions and other important notes about how to build it, run it, and test it
+
+## Naming Convention of Repositories
+
+- Use `lowercase`, `kebab-case` for repository names
+- Naming formula for projects: `<project>-<platform>-<module>`
+- Naming formula for templates and other internal repositories: `<platform>-<module>`
+- The `<module>` part is optional
+- The `<platform>` part is one of these: *android*, *ios*, *flutter*, *rn*, *unity*, *backend-go*, *backend-nodejs*, *frontend-react*, *ds*
+- If the project name consists of multiple words, use dashes as a separator, e.g. `rich-uncles-flutter`
+- If project has multiple versions, use *v1*, *v2* suffixes, e.g. `float-backend-go-api-v1`, `float-backend-go-api-v2`
+- The same rules above apply to public repositories
+- Examples of repository names: `surge-android`, `surge-ios`, `surge-backend-nodejs-api`, `surge-frontend-react-admin`, `surge-ds-recommendation`
 
 ## Teams
 
