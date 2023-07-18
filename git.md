@@ -29,12 +29,13 @@ This document is focused on the following topics:
 - Use `lowercase`, `kebab-case` for repository names
 - Naming formula for projects: `<project>-<platform>-<module>`
 - Naming formula for templates and other internal repositories: `<platform>-<module>`
-- The `<module>` part is optional
 - The `<platform>` part is one of these: *android*, *ios*, *flutter*, *rn*, *unity*, *backend-go*, *backend-nodejs*, *frontend-react*, *ds*
+- The `<module>` part is optional
 - If the project name consists of multiple words, use dashes as a separator, e.g. `rich-uncles-flutter`
 - If project has multiple versions, use *v1*, *v2* suffixes, e.g. `float-backend-go-api-v1`, `float-backend-go-api-v2`
 - The same rules above apply to public repositories
-- Examples of repository names: `surge-android`, `surge-ios`, `surge-backend-nodejs-api`, `surge-frontend-react-admin`, `surge-ds-recommendation`
+- Examples of project repository names: `surge-android`, `surge-ios`, `surge-backend-nodejs-api`, `surge-frontend-react-admin`, `surge-ds-recommendation`
+- Examples of internal repositories: `android-template`, `ios-snippets`, `backend-nodejs-academy-2022`, `frontend-react-authentication-services`, `ds-data-stack`
 
 ## Teams
 
