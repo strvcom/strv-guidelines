@@ -43,8 +43,8 @@ This document is focused on the following topics:
 - Each repository should be assigned to a team
 - Developers should be assigned to teams rather than to specific repositories
 - Developers who are repository admins are not allowed to invite external collaborators (contact a manager)
-- Use `PascalCase` for team names, e.g. `RichUncles`
-- If you need to add a suffix, separate it with the dash symbol, e.g. `RichUncles-Admin`
+- Each department has its own team for sharing internal projects and templates
+- Use `lowercase`, `kebab-case` for team names, e.g. `rich-uncles`
 
 ## Branches
 
